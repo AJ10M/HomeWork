@@ -1,64 +1,63 @@
 #include <iostream>
 
 
-/*НЕ ДОДЕЛАНО ПОКА ЧТО*/
+/*В ПРОЦЕССЕ ДОДЕЛЫВАНИЯ*/
 
 using namespace std;
 
-class String {
-  char mas[100];
+typedef class string {
+  int size;
+  char* mas[100];
 public:
-  String();
-  ~String();
-  void Concat( string s );
-  int Find( string s );
+  string();
+  ~string();
+  void concat(string s);
+  int find(string s);
+  void get(int i);
+  void set(int i);
 };
 
-String::String()
+
+string::string( int a )
 {
-  cout<< "Инициализировано";
+  size = a;
+  mas = new char[size];
+  for (int i = 0; i < size; i++)
+    cin >> a;
+}
+string::~string()
+{
+  for (int i = 0; i < size; i++)
+    delete mas[i];
+  delete mas;
 }
 
-String::~String()
+void string::concat( string s )//приписывает к данной строке строку s
 {
-  cout<< "Разрушено";
+  for (int i = size; i < size + s.size; i++)
+    mas[i] = s.mas[i - size];
+  size += s.size;
 }
 
-void Concat( string s )
+int string::find( string s )//ищет вхождение подстроки s в нашей строке
 {
-  string tmp = mas;
-  int i = 0, SizeT = mas.size;//размер строки
-  mas = malloc (SizeT + s.size() - 1);
-  while( i < SizeT - 1 )
-    mas[i] = tmp[i++];
-  while( i < SizeT + s.size - 1 )
-    mas[i] = s[i++ - SizeT];
+
 }
 
-int find( string s )
+void string::set( int i )
 {
-  int i = 0, k = 0;
-  while( mas[i] != 0 )
-  {
-    if (mas[i] == s[k])
-      i++, k++;
-    else
-      i++, k = 0;
-    if (s[k] == 0)
-      return i - k;
-  }
-  return -1;
+  cin >> mas[i];
+}
+void string::get( int i )
+{
+  cout << mas[i] << endl;
 }
 
-
-
-
-
-
-
-
-
-
+void string::print()
+{
+  for (int i = 0; i < size; i++)
+    cout << mas[i];
+}
 
 
 int main()
