@@ -104,15 +104,15 @@ class RBtree{
 public:
 
 	node *insertNode( int data ) {
-		node *current, *p;
+		node *p, *t;//текущий
 
-		current = root;
+		t = root;
 		p = 0;
-		while (current != NULL) {
-			if (data == (current->data))
-              return (current);
-			p = current;
-			current = (data < (current->data) ? current->left : current->right);
+		while (t != NULL) {
+			if (data == (t->data))
+              return (t);
+			p = t;
+			t = (data < (t->data) ? t->left : t->right);
 		}
 		node* x = new node;
 		x->data = data;
